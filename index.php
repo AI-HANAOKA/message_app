@@ -30,8 +30,9 @@
     </header>
     <section class="form">
       <h2 class="form__title">ひとこと掲示板</h2>
-      <div class="form__alert"></div>
-      <form action="create.php" method="post" class="form__inputBox">
+      <!-- <div class="form__alert">
+      </div> -->
+      <form action="create.php" method="post" class="form__inputBox" name="create_form">
         <div class="form__name">
           <label for="name" class="form__nameTitle">ニックネーム</label>
           <input type="text" name="name" id="name" class="form__nameInput">
@@ -40,11 +41,15 @@
           <label for="message" class="form__messageTitle">ひとこと</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
         </div>
-        <input type="submit" value="書き込む" class="form__submit">
+        <input type="submit" onclick="return check();" name="submit" value="書き込む" class="form__submit">
       </form>
     </section>
     <hr class="hr">
-    <?php foreach($tasks as $task): ?>
+    <?php foreach($tasks as $task => $val): ?>
+    <!-- エラー -->
+    <?php $data[$task] = $val["date"]; 
+        array_multisort($data, SORT_DESC, $task);
+    ?>
     <section class="list">
       <div class="list__card">
         <div class="list__top">
@@ -66,5 +71,7 @@
       </p>
     </footer>
   </div>
+
+  <script src="./main.js"></script>
 </body>
 </html>
