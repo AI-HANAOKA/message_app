@@ -1,3 +1,12 @@
+<?php
+    require_once('Models/message.php');
+    require_once('sanitaizing.php');
+
+    $task = new Message();
+    $tasks = $task->getAll();
+    // var_dump($tasks);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -35,17 +44,19 @@
       </form>
     </section>
     <hr class="hr">
+    <?php foreach($tasks as $task): ?>
     <section class="list">
       <div class="list__card">
         <div class="list__top">
-          <h3 class="list__name">name</h3>
-          <time>time</time>
+          <h3 class="list__name"><?= h($task["name"]); ?></h3>
+          <time><?= h($task["date"]); ?></time>
         </div>
         <div class="list__bottom">
-          <p class="list__message">message</p>
+          <p class="list__message"><?= h($task["message"]);?></p>
         </div>
       </div>
     </section>
+    <?php endforeach; ?>
     <section class="up">
       <p class="up__icon">▲</p>
     </section>
