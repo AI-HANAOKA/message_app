@@ -45,11 +45,7 @@
       </form>
     </section>
     <hr class="hr">
-    <?php foreach($tasks as $task => $val): ?>
-    <!-- エラー -->
-    <?php $data[$task] = $val["date"]; 
-        array_multisort($data, SORT_DESC, $task);
-    ?>
+    <?php foreach($tasks as $task): ?>
     <section class="list">
       <div class="list__card">
         <div class="list__top">
@@ -57,7 +53,7 @@
           <time><?= h($task["date"]); ?></time>
         </div>
         <div class="list__bottom">
-          <p class="list__message"><?= h($task["message"]);?></p>
+          <p class="list__message"><?= h($task["message"]); ?></p>
         </div>
       </div>
     </section>
